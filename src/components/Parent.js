@@ -1,43 +1,28 @@
 import React, { useState } from 'react';
+import './style.css'; // Make sure to adjust the path according to your file structure
 
-// Parent component
 const Parent = () => {
-  // State to manage whether the modal should be shown or not
   const [showModal, setShowModal] = useState(false);
 
-  // Function to handle the button click event
-  const handleButtonClick = () => {
-    // Set the state to true to show the modal
-    setShowModal(true);
+  const toggleModal = () => {
+    setShowModal(!showModal);
   };
 
   return (
-    <div>
+    <div className='parent'>
       <h1>Parent Component</h1>
-      {/* Render the Child component */}
-      <Child showModal={showModal} onButtonClick={handleButtonClick} />
+      <div className='child'>
+        <h2>Child Component</h2>
+        <button onClick={toggleModal}>Show Modal</button>
+        {showModal && <div className="modal">Modal Content
+        <p>this is the model content</p>
+        </div> 
+        
+        }
+      </div>
     </div>
   );
-}
-
-// Child component
-const Child = ({ showModal, onButtonClick }) => {
-  return (
-    <div>
-      <h3>Child Component</h3>
-      {/* Button to trigger the showModal function in the parent */}
-      <button onClick={onButtonClick}>Show Modal</button>
-      {/* Conditional rendering based on the showModal prop */}
-      {showModal && (
-        <div>
-          Modal is shown
-          <p>htttttttt</p>
-        </div>
-      )}
-    </div>
-  );
-}
+};
 
 export default Parent;
-
 
